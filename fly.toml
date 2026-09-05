@@ -1,40 +1,37 @@
-# Fly.io konfigurācija – https://fly.io/docs/reference/configuration/
-# Pirmā palaišana:  fly launch --copy-config --no-deploy  (ja lietotnes nosaukums aizņemts, nomaini app)
-# Izvietot:         fly deploy
-# Mērogot:          fly scale count 2 --region ams      (minimums; augstāk ceļ auto_start)
-#                   fly scale count 8 --region ams      (maksimums, ko proxy drīkst pamodināt)
+# fly.toml app configuration file generated for pielaiko-partiju on 2026-09-05T13:57:56Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "pielaiko-partiju"
-primary_region = "ams"
+app = 'pielaiko-partiju'
+primary_region = 'ams'
 
 [build]
-  dockerfile = "Dockerfile"
+  dockerfile = 'Dockerfile'
 
 [env]
-  PORT = "8080"
-  NODE_ENV = "production"
+  NODE_ENV = 'production'
+  PORT = '8080'
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "suspend"   # dīkstāvē mašīnas iemidzina, pamostas < 1 s
+  auto_stop_machines = 'suspend'
   auto_start_machines = true
-  min_machines_running = 2         # vienmēr 2 mašīnas: nulles dīkstāve izlaidumos un pīķa sākumā
+  min_machines_running = 2
 
-  # Mērogošanas slieksnis pēc vienlaicīgiem pieprasījumiem uz vienu mašīnu.
-  # PNG renderēšana ~30 ms CPU; HTML un statiskie faili ir lēti. Pie soft_limit proxy sūta uz citu mašīnu vai pamodina jaunu.
   [http_service.concurrency]
-    type = "requests"
-    soft_limit = 150
+    type = 'requests'
     hard_limit = 250
+    soft_limit = 150
 
   [[http_service.checks]]
-    grace_period = "5s"
-    interval = "15s"
-    method = "GET"
-    path = "/healthz"
-    timeout = "3s"
+    interval = '15s'
+    timeout = '3s'
+    grace_period = '5s'
+    method = 'GET'
+    path = '/healthz'
 
 [[vm]]
-  size = "shared-cpu-1x"
-  memory = "512mb"
+  size = 'shared-cpu-1x'
+  memory = '512mb'
