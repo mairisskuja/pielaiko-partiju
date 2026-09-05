@@ -1,0 +1,75 @@
+{
+  "_piezīme": "Vienīgais SEO un social sharing tagu avots. Pēc labošanas palaid: node scripts/build-meta.js (izstrādes serveris to dara automātiski). Atslēgas, kas sākas ar '_', tiek ignorētas.",
+
+  "site": {
+    "_piezīme": "url – publiskais domēns ar beigu slīpsvītru. No tā veidojas canonical, og:url un absolūtie attēlu ceļi.",
+    "url": "https://pielaikopartiju.lv/",
+    "name": "Pielaiko partiju",
+    "lang": "lv",
+    "locale": "lv_LV",
+    "themeColor": "#2E6B45"
+  },
+
+  "title": "Pielaiko partiju – 15. Saeimas vēlēšanu tests 2026",
+  "description": "Atbildi uz 24 apgalvojumiem un uzzini, kuru 14 kandidātu sarakstu programmas ir tuvākās tavai nostājai. Tikai programmās rakstītais, bez partiju reklāmas.",
+  "keywords": [
+    "Saeimas vēlēšanas 2026",
+    "15. Saeimas vēlēšanas",
+    "partiju tests",
+    "vēlēšanu kompass",
+    "kura partija man tuvāka",
+    "partiju programmas",
+    "kandidātu saraksti",
+    "pielaiko partiju"
+  ],
+  "author": "Mairis Skuja",
+  "robots": "index, follow, max-image-preview:large",
+  "canonical": "/",
+
+  "og": {
+    "type": "website",
+    "title": "Pielaiko partiju – kura partija tev tuvāka?",
+    "description": "24 apgalvojumi, 14 kandidātu saraksti, tikai programmās rakstītais. Neatkarīgs vēlētāja palīgrīks 15. Saeimas vēlēšanām 2026. gada 3. oktobrī.",
+    "image": "assets/og-image.png",
+    "imageWidth": 1200,
+    "imageHeight": 630,
+    "imageAlt": "Pielaiko partiju – 24 apgalvojumi, 14 kandidātu saraksti, tikai programmās rakstītais"
+  },
+
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Pielaiko partiju – kura partija tev tuvāka?",
+    "description": "24 apgalvojumi, 14 kandidātu saraksti, tikai programmās rakstītais. Neatkarīgs vēlētāja palīgrīks 15. Saeimas vēlēšanām.",
+    "image": "assets/og-image.png"
+  },
+
+  "icons": {
+    "svg": "assets/favicon.svg",
+    "appleTouch": "assets/apple-touch-icon.png"
+  },
+
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pielaiko partiju",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Nepieciešams JavaScript",
+    "inLanguage": "lv",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "datePublished": "2026-09-05",
+    "author": {
+      "@type": "Person",
+      "name": "Mairis Skuja",
+      "affiliation": { "@type": "Organization", "name": "Iconic Software" }
+    },
+    "about": {
+      "@type": "Event",
+      "name": "15. Saeimas vēlēšanas",
+      "startDate": "2026-10-03",
+      "location": { "@type": "Country", "name": "Latvija" }
+    }
+  }
+}
