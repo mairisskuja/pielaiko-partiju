@@ -1,0 +1,22 @@
+{
+  "name": "pielaiko-partiju",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pielaiko partiju – 15. Saeimas vēlēšanu vēlētāja palīgrīks: statiska lapa + Node serveris personalizētām dalīšanās kartītēm",
+  "license": "GPL-3.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "DEV=1 node server/index.js 8765",
+    "build:meta": "node scripts/build-meta.js",
+    "build:assets": "scripts/build-assets.sh",
+    "test": "node server/test.js"
+  },
+  "dependencies": {
+    "@expo-google-fonts/libre-franklin": "^0.4.2",
+    "@expo-google-fonts/playfair-display": "^0.4.2",
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

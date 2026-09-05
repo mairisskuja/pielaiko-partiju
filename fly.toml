@@ -1,0 +1,40 @@
+# Fly.io konfigurācija – https://fly.io/docs/reference/configuration/
+# Pirmā palaišana:  fly launch --copy-config --no-deploy  (ja lietotnes nosaukums aizņemts, nomaini app)
+# Izvietot:         fly deploy
+# Mērogot:          fly scale count 2 --region ams      (minimums; augstāk ceļ auto_start)
+#                   fly scale count 8 --region ams      (maksimums, ko proxy drīkst pamodināt)
+
+app = "pielaiko-partiju"
+primary_region = "ams"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
+  NODE_ENV = "production"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "suspend"   # dīkstāvē mašīnas iemidzina, pamostas < 1 s
+  auto_start_machines = true
+  min_machines_running = 2         # vienmēr 2 mašīnas: nulles dīkstāve izlaidumos un pīķa sākumā
+
+  # Mērogošanas slieksnis pēc vienlaicīgiem pieprasījumiem uz vienu mašīnu.
+  # PNG renderēšana ~30 ms CPU; HTML un statiskie faili ir lēti. Pie soft_limit proxy sūta uz citu mašīnu vai pamodina jaunu.
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 150
+    hard_limit = 250
+
+  [[http_service.checks]]
+    grace_period = "5s"
+    interval = "15s"
+    method = "GET"
+    path = "/healthz"
+    timeout = "3s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
