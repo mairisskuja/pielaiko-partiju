@@ -34,6 +34,14 @@ function abs(base, p) {
   if (/^https?:\/\//.test(p)) return p;
   return base.replace(/\/+$/, "") + "/" + String(p).replace(/^\.?\//, "");
 }
+// Lokālam attēlam pievieno satura hash kā ?v=…, lai Facebook un pārlūki pēc attēla maiņas neizmanto veco kešu.
+function versioned(p) {
+  if (!p || /^https?:\/\//.test(p)) return p;
+  const f = path.join(ROOT, "pielaiko-partiju", p);
+  if (!fs.existsSync(f)) return p;
+  const h = require("crypto").createHash("sha1").update(fs.readFileSync(f)).digest("hex").slice(0, 8);
+  return p + "?v=" + h;
+}
 
 function buildTags(seo) {
   const warn = [];
@@ -66,7 +74,7 @@ function buildTags(seo) {
   L.push(`<meta property="og:title" content="${esc(og.title || seo.title)}">`);
   L.push(`<meta property="og:description" content="${esc(og.description || seo.description)}">`);
   if (og.image) {
-    L.push(`<meta property="og:image" content="${esc(abs(base, og.image))}">`);
+    L.push(`<meta property="og:image" content="${esc(abs(base, versioned(og.image)))}">`);
     if (og.imageType) L.push(`<meta property="og:image:type" content="${esc(og.imageType)}">`);
     if (og.imageWidth) L.push(`<meta property="og:image:width" content="${og.imageWidth}">`);
     if (og.imageHeight) L.push(`<meta property="og:image:height" content="${og.imageHeight}">`);
@@ -76,7 +84,7 @@ function buildTags(seo) {
   L.push(`<meta name="twitter:card" content="${esc(tw.card || "summary_large_image")}">`);
   L.push(`<meta name="twitter:title" content="${esc(tw.title || og.title || seo.title)}">`);
   L.push(`<meta name="twitter:description" content="${esc(tw.description || og.description || seo.description)}">`);
-  if (tw.image || og.image) L.push(`<meta name="twitter:image" content="${esc(abs(base, tw.image || og.image))}">`);
+  if (tw.image || og.image) L.push(`<meta name="twitter:image" content="${esc(abs(base, versioned(tw.image || og.image)))}">`);
   if (tw.site) L.push(`<meta name="twitter:site" content="${esc(tw.site)}">`);
 
   if (icons.svg) L.push(`<link rel="icon" type="image/svg+xml" href="${esc(icons.svg)}">`);
@@ -86,7 +94,7 @@ function buildTags(seo) {
     const ld = Object.assign({}, seo.jsonLd);
     if (!ld.url) ld.url = canonical;
     if (!ld.description) ld.description = seo.description;
-    if (!ld.image && og.image) ld.image = abs(base, og.image);
+    if (!ld.image && og.image) ld.image = abs(base, versioned(og.image));
     // "</" JSON iekšienē nedrīkst aizvērt <script>
     L.push(`<script type="application/ld+json">${JSON.stringify(ld).replace(/<\//g, "<\\/")}</script>`);
   }
