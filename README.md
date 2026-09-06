@@ -167,7 +167,7 @@ Sākuma ekrānā zem pogas "Sākt anketu", 16px zem tās, centrēts pret pogu: "
 
 ### SEO
 
-Visi `<title>`, meta, Open Graph, Twitter, ikonu un JSON-LD tagi nāk no `seo.json`. `npm run build:meta` tos ieraksta `index.html` starp `<!-- seo:start -->` un `<!-- seo:end -->`, validē garumus (title ≤ 60, description ≤ 160) un attēlu esamību. Roku labojumi šajā blokā tiek pārrakstīti. Lokāliem `og:image` un `twitter:image` attēliem skripts pievieno satura hash `?v=…`, tāpēc pēc attēla nomaiņas un `build:meta` Facebook un pārlūki ņem jauno versiju bez purge. Rezultātu lapās serveris to pašu bloku aizstāj ar rezultāta tagiem.
+Visi `<title>`, meta, Open Graph, Twitter, ikonu un JSON-LD tagi nāk no `seo.json`. `npm run build:meta` tos ieraksta `index.html` starp `<!-- seo:start -->` un `<!-- seo:end -->`, validē garumus (title ≤ 60, description ≤ 160) un attēlu esamību. Roku labojumi šajā blokā tiek pārrakstīti. Lokāliem `og:image` un `twitter:image` attēliem un `<script src="./…js">` skripts pievieno satura hash `?v=…`, tāpēc pēc faila nomaiņas un `build:meta` (Docker būvē tas notiek automātiski) Facebook, Cloudflare un pārlūki ņem jauno versiju bez purge. Rezultātu lapās serveris to pašu bloku aizstāj ar rezultāta tagiem.
 
 ### Analītika un piekrišana
 

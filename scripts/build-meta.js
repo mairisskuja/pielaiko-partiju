@@ -2,6 +2,7 @@
 /*
  * Ielasa seo.json un iestrādā <title>, meta, Open Graph, Twitter, ikonu un
  * JSON-LD tagus index.html <head> daļā starp <!-- seo:start --> un <!-- seo:end -->.
+ * Papildus lokālajiem <script src="./…js"> un OG attēlam pievieno ?v=<satura hash> (keša lauzējs).
  * Tagi nonāk statiskajā HTML, tāpēc tos redz arī sociālo tīklu roboti,
  * kas JavaScript neizpilda (Facebook, LinkedIn, X, WhatsApp, Telegram).
  *
@@ -107,7 +108,14 @@ function build({ write = true, quiet = false } = {}) {
   const src = fs.readFileSync(HTML_FILE, "utf8");
   const a = src.indexOf(START), b = src.indexOf(END);
   if (a < 0 || b < 0 || b < a) throw new Error(`index.html trūkst marķieru ${START} … ${END}`);
-  const out = src.slice(0, a + START.length) + "\n" + html + "\n" + src.slice(b);
+  let out = src.slice(0, a + START.length) + "\n" + html + "\n" + src.slice(b);
+  // Lokālajiem skriptiem ?v=<satura hash>: pēc izlaiduma pārlūki un Cloudflare ņem jauno failu, nevis kešoto.
+  out = out.replace(/(<script src="\.\/)([a-z-]+\.js)(\?v=[0-9a-f]+)?(")/g, (m, pre, file, _v, post) => {
+    const f = path.join(ROOT, "pielaiko-partiju", file);
+    if (!fs.existsSync(f)) return m;
+    const h = require("crypto").createHash("sha1").update(fs.readFileSync(f)).digest("hex").slice(0, 8);
+    return pre + file + "?v=" + h + post;
+  });
   const changed = out !== src;
   if (write && changed) fs.writeFileSync(HTML_FILE, out);
   if (!quiet) {
