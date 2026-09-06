@@ -12,7 +12,8 @@
     "dev": "DEV=1 node server/index.js 8765",
     "build:meta": "node scripts/build-meta.js",
     "build:assets": "scripts/build-assets.sh",
-    "test": "node server/test.js"
+    "test": "node server/test.js && node scripts/verify-why.js",
+    "verify:why": "node scripts/verify-why.js"
   },
   "dependencies": {
     "@expo-google-fonts/libre-franklin": "^0.4.2",

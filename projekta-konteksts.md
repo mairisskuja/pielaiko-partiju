@@ -135,24 +135,24 @@ Pa jautājumiem rāda atzīmi: |u−s| = 0 "Sakrīt", 1 "Tuvu", 2 "Daļēji", �
 
 ## 4. Datu avoti un verifikācijas statuss
 
-| Nr | Saraksts | Pozīcijas | Pārbaudīts pret pilnu programmu | Avoti | Lasiviegli URL (pilns CVK teksts bez kandidātu tabulas) |
-|---|---|---|---|---|---|
-| 1 | Suverēnā vara / Apvienība Jaunlatvieši | 23/24 | jā | CVK, LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/suverena-vara--apvieniba-jaunlatviesi/ |
-| 2 | Mēs mainām noteikumus | 15/24 | jā | CVK (lasiviegli), LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/mes-mainam-noteikumus/ |
-| 3 | Saskaņas Centrs | 16/24 | jā | CVK (lasiviegli), LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/politisko-partiju-apvieniba-saskanas-centrs/ |
-| 4 | Zaļo un Zemnieku savienība | 17/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/zalo-un-zemnieku-savieniba/ |
-| 5 | Nacionālā apvienība | 11/24 | NĒ — jādara | LETA, LVP-D, LVP-I, tvnet | https://www.lasiviegli.lv/saraksti/nacionala-apvieniba-visu-latvijai-tevzemei-un-brivibailnnk/ |
-| 6 | Gobzema saraksts | 15/24 | NĒ — jādara | LSM, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/gobzema-saraksts/ |
-| 7 | Apvienotais saraksts | 11/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/apvienotais-saraksts---latvijas-zala-partija-latvijas-regionu-apvieniba-liepajas-partija/ |
-| 8 | Latvija pirmajā vietā | 11/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/latvija-pirmaja-vieta/ |
-| 9 | Jaunā Vienotība | 9/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/jauna-vienotiba/ |
-| 10 | Jaunā konservatīvā partija | 9/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/jkp-jauna-konservativa-partija/ |
-| 11 | Latvijas attīstībai | 6/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/latvijas-attistibai/ |
-| 12 | Austošā Saule Latvijai | 13/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/austosa-saule-latvijai/ |
-| 13 | Stabilitātei! | 16/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/politiska-partija-stabilitatei/ |
-| 14 | Progresīvie | 10/24 | NĒ — jādara | LETA, LVP-D, LVP-I | https://www.lasiviegli.lv/saraksti/progresivie/ |
+| Nr | Saraksts | Nostājas | Pārbaudīts pret pilnu programmu | Avots |
+|---|---|---|---|---|
+| 1 | Suverēnā vara / Apvienība Jaunlatvieši | 22/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 2 | Mēs mainām noteikumus | 15/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 3 | Saskaņas Centrs | 16/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 4 | Zaļo un Zemnieku savienība | 18/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 5 | Nacionālā apvienība | 13/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 6 | Gobzema saraksts | 16/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 7 | Apvienotais saraksts | 17/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 8 | Latvija pirmajā vietā | 15/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 9 | Jaunā Vienotība | 16/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 10 | Jaunā konservatīvā partija | 16/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 11 | Latvijas attīstībai | 12/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 12 | Austošā Saule Latvijai | 20/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 13 | Stabilitātei! | 17/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
+| 14 | Progresīvie | 14/24 | jā | CVK pilnais teksts (lasiviegli.lv) |
 
-Apzīmējumi: **CVK** dati.cvk.lv pilns teksts; **LETA** analīze BNN 08.07.2026; **LVP-D** LV portāls "Lasām partiju programmas. Ārējā drošība" 24.08.2026; **LVP-I** LV portāls "…Izglītība un zinātne" 31.08.2026; **LSM** 03.07.2026 par Gobzema sarakstu; **tvnet** 22.07.2026 (NA frāze par latviešu īpatsvaru).
+Visas nostājas noteiktas 2026-09-06, izlasot pilnu CVK iesniegto programmas tekstu (lasiviegli.lv cilne "Oriģināls"). Katrs `why` pamatojums ir burtisks citāts no programmas teksta; to pārbauda `npm run verify:why` pret `programmas/` mapē saglabātajiem avotiem, un pārbaude ir daļa no `npm test`. Mediju apskati (LETA/BNN, LV portāls, LSM) izmantoti tikai kā kontrole, ne kā nostāju avots.
 
 Saites:
 - https://dati.cvk.lv/SV2026/kandidatu-saraksti/
@@ -163,12 +163,9 @@ Saites:
 - https://www.lsm.lv/raksts/zinas/latvija/03.07.2026-gobzema-saraksta-lideri-saeimas-velesanam-parsvara-maz-zinami-cilveki-programma-naudigi-solijumi.a653821/
 - https://www.lasiviegli.lv/ (Piekļūstamība.lv projekts; katrai programmai vieglā valoda + CVK oriģināls)
 
-**Zināmās vājās šūnas (izsecinātas, ne tieši citētas — verificēt vai nullēt):**
-- Nacionālā apvienība, jautājums 17 (mācību valoda) −1: programma uzsver valsts valodu un valstisko audzināšanu, bet tieši par mazākumtautību valodām nerunā.
-- Stabilitātei!, jautājums 3 (lielie projekti) −1: izsecināts no "budžets bez aizņēmumiem".
-- Suverēnā vara, jautājums 9 (Krievija) +1: no "izbeigt uzņēmēju ģeopolitisko vajāšanu", ne no tieša teikuma par sankcijām.
-- Gobzema saraksts, jautājums 10 (Ukraina) −1: no "neieņems aktīvu pozīciju" (LSM citāts).
+**Izsecinātās šūnas noņemtas.** Kur nostāja būtu jāizsecina no partijas vispārējā tēla, nevis no programmas teksta, šūna atstāta tukša. 2026-09-06 noņemtas trīs šādas: Suverēnā vara jaut. 10 (Krievija) – "izbeigt uzņēmēju ģeopolitisko vajāšanu" nenosauc ne Krieviju, ne sankcijas; Nacionālā apvienība jaut. 18 (mācību valoda) – programma runā par valsts valodu iestādēs, ne par mācību valodu skolās; Progresīvie jaut. 21 (valsts pārvalde) – runā par pārvaldes kvalitāti, ne par ierēdņu skaitu.
 
+Tukšo šūnu ir 110 no 336. Tas nav robs, bet vērtība: programma par šo jautājumu klusē, un tukša šūna netiek skaitīta. Programmu garums ir 6–12 tūkstoši rakstzīmju, tāpēc neviena nesedz visas 24 tēmas.
 
 ## 5. Metodikas pārbaudes (simulācijas ar 20 000 nejaušu atbilžu)
 
