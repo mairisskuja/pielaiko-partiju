@@ -27,6 +27,7 @@ seo.json               SEO un social sharing tagu avots
 Dockerfile, fly.toml   Fly.io izvietojums
 deploy/cloudflare.md   DNS, TLS, keša un rate-limit noteikumi Cloudflare
 projekta-konteksts.md  uzdevums, neitralitātes noteikumi, datu modelis, avoti
+CHANGELOG.md           izlaidumu un commit hronoloģija
 ```
 
 ## Palaišana
