@@ -163,7 +163,7 @@ Dalīšanās pogas pēc 1. vietas kartes: kopēt saiti, X, Facebook, Threads (pu
 
 ### Skaitītājs "Šobrīd partiju pielaiko N cilvēki"
 
-Sākuma ekrānā zem pogas "Sākt anketu", 16px zem tās: "Šobrīd partiju pielaiko **N** cilvēki. Laiks < **5** minūtēm." (skaitļi treknrakstā #111, bez ikonas). Lapa katrai cilnei izveido nejaušu identifikatoru `sessionStorage` (bez sīkdatnēm, bez IP, pazūd ar cilni) un ik pēc 60 s, kamēr cilne redzama, sūta `POST /api/ping?id=…` un lasa `GET /api/online`. Serveris skaita identifikatorus ar pingu pēdējās 30 minūtēs; uz Fly ar vairākām mašīnām `server/presence.js` pa privāto tīklu (`<app>.internal`) apvieno visu mašīnu sarakstus un skaita unikālos, atbilde kešota 15 s. Sīkrīku rāda no `Component.ONLINE_MIN` (5) cilvēkiem. Latviešu daudzskaitlis: 1, 21, 31… "cilvēks", pārējie "cilvēki".
+Sākuma ekrānā zem pogas "Sākt anketu", 16px zem tās, centrēts pret pogu: "Šobrīd partiju pielaiko **N** cilvēki. Laiks < 5 minūtēm." (tikai N treknrakstā #111); zem sliekšņa: "Anketas pildīšanas laiks ~5 minūtes". Lapa katrai cilnei izveido nejaušu identifikatoru `sessionStorage` (bez sīkdatnēm, bez IP, pazūd ar cilni) un ik pēc 60 s, kamēr cilne redzama, sūta `POST /api/ping?id=…` un lasa `GET /api/online`. Serveris skaita identifikatorus ar pingu pēdējās 30 minūtēs; uz Fly ar vairākām mašīnām `server/presence.js` pa privāto tīklu (`<app>.internal`) apvieno visu mašīnu sarakstus un skaita unikālos, atbilde kešota 15 s. Sīkrīku rāda no `Component.ONLINE_MIN` (5) cilvēkiem. Latviešu daudzskaitlis: 1, 21, 31… "cilvēks", pārējie "cilvēki".
 
 ### SEO
 

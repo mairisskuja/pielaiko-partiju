@@ -159,7 +159,7 @@ programmās rakstīto</h2>
         <sc-if value="{{ noProgress }}" hint-placeholder-val="{{ true }}">
           <div style="margin-top:22px;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
             <button onClick="{{ startFresh }}" style="display:flex;width:100%;align-items:center;justify-content:center;gap:12px;min-height:58px;padding:0 34px;border-radius:999px;font-weight:700;font-size:18px;background:#2E6B45;color:#fff" style-hover="background:#275C3B">Sākt anketu<span aria-hidden="true">→</span></button>
-            <p role="status" aria-live="polite" style="margin:6px 0 0;font-size:13px;line-height:1.6;color:#666666;text-wrap:pretty"><sc-if value="{{ hasOnline }}" hint-placeholder-val="{{ true }}"><span data-noprint>Šobrīd partiju pielaiko <b style="font-weight:700;color:#111111">{{ onlineN }}</b> {{ onlineWord }}. </span></sc-if>Laiks &lt; <b style="font-weight:700;color:#111111">5</b> minūtēm.</p>
+            <p role="status" aria-live="polite" style="margin:6px 0 0;width:100%;text-align:center;font-size:13px;line-height:1.6;color:#666666;text-wrap:pretty"><sc-if value="{{ hasOnline }}" hint-placeholder-val="{{ true }}"><span data-noprint>Šobrīd partiju pielaiko <b style="font-weight:700;color:#111111">{{ onlineN }}</b> {{ onlineWord }}. Laiks &lt; 5 minūtēm.</span></sc-if><sc-if value="{{ noOnline }}" hint-placeholder-val="{{ false }}">Anketas pildīšanas laiks ~5 minūtes</sc-if></p>
           </div>
         </sc-if>
       </div>
