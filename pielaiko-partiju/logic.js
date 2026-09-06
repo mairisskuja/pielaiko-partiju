@@ -1,7 +1,7 @@
 class Component extends DCLogic {
   state = {
     ready: false, screen: "intro", cur: 0,
-    answers: [], important: [], fromShare: false, toast: "", donateOpen: false
+    answers: [], important: [], fromShare: false, toast: "", donateOpen: false, online: 0
   };
 
   componentDidMount() {
@@ -9,11 +9,52 @@ class Component extends DCLogic {
     if (window.PP) { clearInterval(this._tick); this.boot(); }
     this._esc = e => { if (e.key === "Escape" && this.state.donateOpen) this.closeDonate("escape"); };
     document.addEventListener("keydown", this._esc);
+    this.startPresence();
   }
   componentWillUnmount() {
     clearInterval(this._tick);
     clearTimeout(this._toastTimer);
+    clearInterval(this._presenceTimer);
     document.removeEventListener("keydown", this._esc);
+    document.removeEventListener("visibilitychange", this._vis);
+  }
+
+  // ---- "Šobrīd partiju pielaiko N cilvēki": anonīms heartbeat bez sīkdatnēm ------
+  // Identifikators ir nejaušs un dzīvo tikai šīs cilnes sessionStorage. Pingo ik pēc 60 s, kamēr cilne redzama.
+  static ONLINE_MIN = 5;          // zem šī skaitļa sīkrīku nerāda
+  static PRESENCE_EVERY_MS = 60 * 1000;
+  presenceId() {
+    try {
+      let id = sessionStorage.getItem("pp-sid");
+      if (!id || !/^[a-z0-9]{8,32}$/.test(id)) {
+        const a = new Uint8Array(12); crypto.getRandomValues(a);
+        id = Array.from(a, b => (b % 36).toString(36)).join("");
+        sessionStorage.setItem("pp-sid", id);
+      }
+      return id;
+    } catch (e) { return null; }
+  }
+  startPresence() {
+    if (typeof fetch !== "function") return;
+    const id = this.presenceId();
+    if (!id) return;
+    const beat = () => {
+      if (document.visibilityState === "hidden") return;
+      // Vispirms ping, tad skaits – lai pašas cilnes ping jau ir ieskaitīts.
+      fetch("/api/ping?id=" + id, { method: "POST", keepalive: true }).catch(() => {})
+        .then(() => fetch("/api/online", { cache: "no-store" }))
+        .then(r => r && r.ok ? r.json() : null)
+        .then(d => { if (d && typeof d.count === "number" && d.count !== this.state.online) this.setState({ online: d.count }); })
+        .catch(() => {});
+    };
+    beat();
+    this._presenceTimer = setInterval(beat, Component.PRESENCE_EVERY_MS);
+    this._vis = () => { if (document.visibilityState === "visible") beat(); };
+    document.addEventListener("visibilitychange", this._vis);
+  }
+  onlineWord() {
+    const n = this.state.online;
+    return n % 10 === 1 && n % 100 !== 11 ? "cilvēks" : "cilvēki"; // 1, 21, 31… cilvēks; 11 cilvēki
   }
 
   // ---- Ziedojuma popover pirms "Sākt no jauna" (tikai paša aizpildītam rezultātam) ----
@@ -310,6 +351,7 @@ class Component extends DCLogic {
       hasToast: !!this.state.toast, toast: this.state.toast,
       startFresh: () => this.startFresh(), resume: () => this.goQuiz(true), resetToIntro: () => this.resetToIntro(),
       donateOpen: !!this.state.donateOpen, home: e => this.goHome(e),
+      hasOnline: this.state.online >= Component.ONLINE_MIN, onlineN: this.state.online, onlineWord: this.onlineWord(),
       consentOpen: () => { if (window.ppConsent) window.ppConsent.open(); },
       closeDonateOverlay: () => this.closeDonate("overlay"), closeDonateBack: () => this.closeDonate("back"),
       confirmStartOverX: () => this.confirmStartOver("x"), confirmStartOver: () => this.confirmStartOver("start_over"),

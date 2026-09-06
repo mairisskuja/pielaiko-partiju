@@ -31,3 +31,19 @@ assert.ok(png.length > 10000 && png.slice(1, 4).toString() === "PNG");
 assert.ok(renderPng(summary("e" + ".".repeat(23))).length > 5000, "bez kartes arī renderē");
 
 console.log("server/test.js: visas pārbaudes OK");
+
+// klātbūtne
+const presence = require("./presence");
+(async () => {
+  presence.reset();
+  assert.strictEqual(presence.ping("bad id!"), false);
+  const t0 = Date.now();
+  for (let i = 0; i < 7; i++) presence.ping("tab" + i + "xxxxxxxx", t0);
+  presence.ping("oldtabxxxxxxxx", t0 - 31 * 60 * 1000);
+  assert.strictEqual(presence.localIds(t0).length, 7, "vecais ping ārpus 30 min neskaitās");
+  const n = await presence.onlineCount({ now: t0, fetchPeers: async () => ["tab0xxxxxxxx", "peerAxxxxxxx", "peerbxxxxxxx"] });
+  assert.strictEqual(n, 9, "apvieno mašīnas, dublikātus neskaita");
+  const cached = await presence.onlineCount({ now: t0 + 5000, fetchPeers: async () => [] });
+  assert.strictEqual(cached, 9, "15 s kešs");
+  console.log("presence: OK");
+})().catch(e => { console.error(e); process.exit(1); });

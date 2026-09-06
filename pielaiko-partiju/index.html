@@ -159,7 +159,7 @@ programmās rakstīto</h2>
         <sc-if value="{{ noProgress }}" hint-placeholder-val="{{ true }}">
           <div style="margin-top:22px;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
             <button onClick="{{ startFresh }}" style="display:flex;width:100%;align-items:center;justify-content:center;gap:12px;min-height:58px;padding:0 34px;border-radius:999px;font-weight:700;font-size:18px;background:#2E6B45;color:#fff" style-hover="background:#275C3B">Sākt anketu<span aria-hidden="true">→</span></button>
-            <span style="font-size:13px;color:#666666">Anketas pildīšana aizņem apmēram 5 minūtes</span>
+            <p role="status" aria-live="polite" style="margin:6px 0 0;font-size:13px;line-height:1.6;color:#666666;text-wrap:pretty"><sc-if value="{{ hasOnline }}" hint-placeholder-val="{{ true }}"><span data-noprint>Šobrīd partiju pielaiko <b style="font-weight:700;color:#111111">{{ onlineN }}</b> {{ onlineWord }}. </span></sc-if>Laiks &lt; <b style="font-weight:700;color:#111111">5</b> minūtēm.</p>
           </div>
         </sc-if>
       </div>
@@ -226,7 +226,7 @@ programmās rakstīto</h2>
             <stripe-buy-button style="display:flex;justify-content:center;width:100%" buy-button-id="buy_btn_1UCGnSRZKjIiQHvuuMyGWEVh" publishable-key="pk_live_51UCG9eRZKjIiQHvu6EKhzRoCfLwk5nvbdWlF9YLKUfBFSetgGqnprecgQ3laAzjHLxjxV0pq4pGl7GTAN5z6Huku00fK09cbE5"></stripe-buy-button>
           </div>
           <p style="margin:0;text-wrap:pretty"><b style="font-weight:700;color:#111111">Kā tas veidots.</b> Projekts tapis ar mākslīgā intelekta rīkiem: apgalvojumu formulēšanai, programmu tekstu izlasīšanai un nostāju matricas uzmetumam izmantots Anthropic modelis Claude; saskarne veidota ar Claude Design, koda pabeigšana un testi – ar Claude Code. Katra nostāja, kas nav nulle, ir saistīta ar konkrētu citātu vai pārstāstu no programmas, un sarakstiem nr. 1–3 visas 24 šūnas ir pārbaudītas manuāli pret pilnu programmas tekstu (lasiviegli.lv “Oriģināls” cilne = CVK teksts). Metodikas noturība pārbaudīta simulācijā ar 20 000 nejaušu atbilžu komplektu. Šaubīgās šūnas ir atzīmētas un aprakstītas metodoloģijā, ne noslēptas.</p>
-          <p style="margin:0;text-wrap:pretty">Rīks nesaglabā personas datus: atbildes glabājas tikai lapas adresē tavā pārlūkā, un dalīšanās saite satur tikai 24 atbilžu burtus. Apmeklējumu statistikai lapa lieto Google Analytics, bet tikai pēc tavas piekrišanas sīkdatņu joslā; atbildes analītikai netiek nodotas, un izvēli var mainīt lapas kājenē.</p>
+          <p style="margin:0;text-wrap:pretty">Rīks nesaglabā personas datus: atbildes glabājas tikai lapas adresē tavā pārlūkā, un dalīšanās saite satur tikai 24 atbilžu burtus. Apmeklējumu statistikai lapa lieto Google Analytics, bet tikai pēc tavas piekrišanas sīkdatņu joslā; atbildes analītikai netiek nodotas, un izvēli var mainīt lapas kājenē. Skaitītājs "Šobrīd partiju pielaiko…" balstās uz nejaušu cilnes identifikatoru, kas nesatur personas datus, netiek saistīts ar atbildēm un pazūd, aizverot cilni.</p>
         </div>
       </details>
 

@@ -38,8 +38,8 @@ Serveris jau sūta pareizas `Cache-Control` galvenes, tāpēc noteikumi tikai no
 - Edge TTL: **Override → 1 hour** (serveris arī dod 3600; pēc izlaiduma purge)
 - Browser TTL: Respect origin
 
-**3. HTML un rezultātu lapas** – nekešot
-- Ja: `(http.request.uri.path eq "/") or (http.request.uri.path eq "/index.html") or (starts_with(http.request.uri.path, "/result=")) or (http.request.uri.path eq "/healthz")`
+**3. HTML, rezultātu lapas un API** – nekešot
+- Ja: `(http.request.uri.path eq "/") or (http.request.uri.path eq "/index.html") or (starts_with(http.request.uri.path, "/result=")) or (starts_with(http.request.uri.path, "/api/")) or (http.request.uri.path eq "/healthz")`
 - Cache eligibility: **Bypass cache**
 
 Piezīme: `/?result=…` HTML arvien nāk no servera, jo tas ir lēts un tā tagi jāatspoguļo pēc `pp-data.js` izmaiņām bez purge.
@@ -53,6 +53,8 @@ Aizsargā CPU dārgāko ceļu.
 - Darbība: **Block** 10 s
 
 Sociālo tīklu roboti (facebookexternalhit, Twitterbot) vienu attēlu prasa pāris reižu, limitu nesasniedz.
+
+Otrs noteikums klātbūtnes API: `(starts_with(http.request.uri.path, "/api/"))`, 30 pieprasījumi 10 sekundēs uz IP, Block 10 s. Lapa sūta 2 pieprasījumus minūtē.
 
 ## 5. Speed
 

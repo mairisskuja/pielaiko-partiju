@@ -8,6 +8,7 @@
  *   Open Graph un Twitter tagiem (Facebook, X, Threads, WhatsApp roboti JavaScript neizpilda,
  *   tāpēc konkrētais rezultāts jāieraksta jau HTML).
  * - /og/ATSLĒGA.png → 1200×630 kartītes attēls konkrētam rezultātam (renderē resvg, keš atmiņā).
+ * - POST /api/ping?id=… un GET /api/online → anonīms "šobrīd pielaiko" skaitītājs (server/presence.js).
  * - --dev: pirms katras index.html atdošanas pārbūvē statiskos SEO tagus no seo.json.
  */
 const http = require("http"), fs = require("fs"), path = require("path");
@@ -15,6 +16,7 @@ const { ROOT, WEB } = require("./data");
 const { summary, KEY_RE } = require("./score");
 const { ogFields, renderPng } = require("./og");
 const { build, buildTags } = require(path.join(ROOT, "scripts", "build-meta.js"));
+const presence = require("./presence");
 
 const args = process.argv.slice(2);
 const DEV = args.includes("--dev") || process.env.DEV === "1";
@@ -67,10 +69,22 @@ function send(res, code, body, headers) {
 }
 
 const server = http.createServer((req, res) => {
-  if (req.method !== "GET" && req.method !== "HEAD") return send(res, 405, "Method Not Allowed", { "Content-Type": "text/plain" });
   let url;
   try { url = new URL(req.url, "http://x"); } catch (e) { return send(res, 400, "Bad Request", { "Content-Type": "text/plain" }); }
   let p = decodeURIComponent(url.pathname);
+  const NOSTORE = { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" };
+
+  // Klātbūtnes skaitītājs (anonīms, bez sīkdatnēm)
+  if (p === "/api/ping") {
+    if (req.method !== "POST") return send(res, 405, "Method Not Allowed", { "Content-Type": "text/plain" });
+    if (!presence.ping(url.searchParams.get("id"))) return send(res, 400, '{"error":"bad id"}', NOSTORE);
+    res.writeHead(204, { "Cache-Control": "no-store" }); return res.end();
+  }
+  if (p === "/api/online" && req.method === "GET") {
+    if (url.searchParams.get("local") === "1") return send(res, 200, JSON.stringify({ ids: presence.localIds() }), NOSTORE);
+    return presence.onlineCount().then(count => send(res, 200, JSON.stringify({ count, windowMinutes: 30 }), NOSTORE));
+  }
+  if (req.method !== "GET" && req.method !== "HEAD") return send(res, 405, "Method Not Allowed", { "Content-Type": "text/plain" });
 
   // 0) Veselības pārbaude (Fly / load balancer)
   if (p === "/healthz") return send(res, 200, "ok", { "Content-Type": "text/plain", "Cache-Control": "no-store" });

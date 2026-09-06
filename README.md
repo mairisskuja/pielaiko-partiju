@@ -14,7 +14,8 @@ pielaiko-partiju/      tīmekļa sakne (statiskie faili)
   support.js           šablona runtime: izvērtēšana, notikumi, DOM morph
   assets/              og-image.png (1200×630), favicon.svg, apple-touch-icon.png
 server/                Node HTTP serveris bez ietvariem
-  index.js             statiskie faili, /?result= lapas ar rezultāta OG tagiem, /og/*.png
+  index.js             statiskie faili, /?result= lapas ar rezultāta OG tagiem, /og/*.png, /api/*
+  presence.js          anonīms "šobrīd pielaiko" skaitītājs, apvieno Fly mašīnas
   score.js             atslēgas atkodēšana un aprēķins (tas pats algoritms, kas logic.js)
   og.js                kartītes teksti, SVG un PNG renderēšana (resvg)
   data.js              ielādē pp-data.js Node vidē
@@ -159,6 +160,10 @@ Dalīšanās pogas pēc 1. vietas kartes: kopēt saiti, X, Facebook, Threads (pu
 - `GET /?result=ATSLĒGA` atdod `index.html` ar rezultāta tagiem `<!-- seo:start/end -->` blokā: `<title>` un `og:title` "Man tuvākais saraksts: … (nr. n) – p %", `description` ar trim tuvākajiem, `og:url` ar atslēgu, `og:image` uz `/og/ATSLĒGA.png`, `robots: noindex, follow`, canonical uz sakni.
 - `GET /og/ATSLĒGA.png` renderē 1200×630 PNG: 1. vieta ar procentiem un joslu, 2. un 3. vieta, salīdzināto jautājumu skaits. Fonti nāk no npm pakotnēm, ārēju pieprasījumu nav. Keš 500 attēli atmiņā, `Cache-Control: max-age=86400`.
 - Nederīga atslēga dod parasto lapu un 404 attēlam. `server/score.js` atkārto pārlūka aprēķinu, `npm test` pārbauda sakritību.
+
+### Skaitītājs "Šobrīd partiju pielaiko N cilvēki"
+
+Sākuma ekrānā zem pogas "Sākt anketu", 16px zem tās: "Šobrīd partiju pielaiko **N** cilvēki. Laiks < **5** minūtēm." (skaitļi treknrakstā #111, bez ikonas). Lapa katrai cilnei izveido nejaušu identifikatoru `sessionStorage` (bez sīkdatnēm, bez IP, pazūd ar cilni) un ik pēc 60 s, kamēr cilne redzama, sūta `POST /api/ping?id=…` un lasa `GET /api/online`. Serveris skaita identifikatorus ar pingu pēdējās 30 minūtēs; uz Fly ar vairākām mašīnām `server/presence.js` pa privāto tīklu (`<app>.internal`) apvieno visu mašīnu sarakstus un skaita unikālos, atbilde kešota 15 s. Sīkrīku rāda no `Component.ONLINE_MIN` (5) cilvēkiem. Latviešu daudzskaitlis: 1, 21, 31… "cilvēks", pārējie "cilvēki".
 
 ### SEO
 
