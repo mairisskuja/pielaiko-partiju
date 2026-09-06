@@ -6,6 +6,7 @@ Laiki pēc Rīgas laika (EEST). Fly izlaidums = versija, kas darbojas https://pi
 
 | Laiks | Commit | Fly | Izmaiņas |
 |---|---|---|---|
+| 14:58 | `cf7962f` | | Nostājas visiem 14 sarakstiem no pilnajiem CVK programmu tekstiem (lasiviegli.lv): 226 no 336 šūnām (bija 182), katrs pamatojums burtisks citāts, 4 izsecinātas šūnas noņemtas. Jauns `programmas/` ar avota tekstiem un `scripts/verify-why.js`, kas pārbauda citātus pret avotu (daļa no `npm test`). Servera tests neatkarīgs no konkrētiem datiem. "Par projektu" un "Metodoloģija" atjaunotas. |
 | 11:27 | `1d4ad0c` | v8 | Lokālajiem skriptiem (`pp-data.js`, `support.js`, `logic.js`) adresē satura hash `?v=…`, lai pēc izlaiduma pārlūki un Cloudflare ņem jauno failu bez purge. Cēlonis: Cloudflare skriptiem dod pārlūka kešu 4 h, un jaunais HTML ar veco `logic.js` nerādīja tekstu zem pogas. |
 | 11:22 | `11bba47` | v7 | Teksts zem "Sākt anketu": "Šobrīd partiju pielaiko **N** cilvēki. Laiks < 5 minūtēm." (tikai N treknrakstā), zem sliekšņa "Anketas pildīšanas laiks ~5 minūtes", centrēts pret pogu, bez zaļā punkta. |
 | 11:14 | `40b569e` | v6 | Klātbūtnes skaitītājs: `server/presence.js`, `POST /api/ping`, `GET /api/online`, anonīms cilnes identifikators `sessionStorage`, 30 min logs, Fly mašīnu apvienošana pa privāto tīklu, 15 s kešs, slieksnis 5 cilvēki, latviešu daudzskaitlis, testi. Privātuma teikums sadaļā "Par projektu". Cloudflare: `/api/*` bez keša un rate limit. |
