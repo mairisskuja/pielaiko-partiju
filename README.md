@@ -162,7 +162,7 @@ Dalīšanās pogas pēc 1. vietas kartes: kopēt saiti, X, Facebook, Threads (pu
 
 ### SEO
 
-Visi `<title>`, meta, Open Graph, Twitter, ikonu un JSON-LD tagi nāk no `seo.json`. `npm run build:meta` tos ieraksta `index.html` starp `<!-- seo:start -->` un `<!-- seo:end -->`, validē garumus (title ≤ 60, description ≤ 160) un attēlu esamību. Roku labojumi šajā blokā tiek pārrakstīti. Rezultātu lapās serveris to pašu bloku aizstāj ar rezultāta tagiem.
+Visi `<title>`, meta, Open Graph, Twitter, ikonu un JSON-LD tagi nāk no `seo.json`. `npm run build:meta` tos ieraksta `index.html` starp `<!-- seo:start -->` un `<!-- seo:end -->`, validē garumus (title ≤ 60, description ≤ 160) un attēlu esamību. Roku labojumi šajā blokā tiek pārrakstīti. Lokāliem `og:image` un `twitter:image` attēliem skripts pievieno satura hash `?v=…`, tāpēc pēc attēla nomaiņas un `build:meta` Facebook un pārlūki ņem jauno versiju bez purge. Rezultātu lapās serveris to pašu bloku aizstāj ar rezultāta tagiem.
 
 ### Analītika un piekrišana
 
