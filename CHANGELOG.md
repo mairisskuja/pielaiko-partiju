@@ -6,7 +6,7 @@ Laiki pēc Rīgas laika (EEST). Fly izlaidums = versija, kas darbojas https://pi
 
 | Laiks | Commit | Fly | Izmaiņas |
 |---|---|---|---|
-| 11:47 | | apturēts | **Projekts iekonservēts līdz nākamajām Saeimas vēlēšanām.** Cloudflare Redirect Rule "Iekonservēts: uz saeima.lv": visi pieprasījumi uz `pielaikopartiju.lv` un `www` saņem 302 uz `https://www.saeima.lv/` (302, lai pārlūki pāradresāciju nekešo). Abām Fly mašīnām (`801937b6430d08`, `683d1292f35338`) izslēgts autostart un tās apturētas. Atjaunošana: `projekta-konteksts.md` 7. sadaļa. |
+| 11:47 | `0cadf21` | apturēts | **Projekts iekonservēts līdz nākamajām Saeimas vēlēšanām.** Cloudflare Redirect Rule "Iekonservēts: uz saeima.lv": visi pieprasījumi uz `pielaikopartiju.lv` un `www` saņem 302 uz `https://www.saeima.lv/` (302, lai pārlūki pāradresāciju nekešo). Abām Fly mašīnām (`801937b6430d08`, `683d1292f35338`) izslēgts autostart un tās apturētas. Atjaunošana: `projekta-konteksts.md` 7. sadaļa. |
 
 ## 2026-09-06
 
