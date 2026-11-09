@@ -216,3 +216,9 @@ Projekts apturēts līdz nākamajām Saeimas vēlēšanām. Kods, Fly lietotne, 
 2. `fly deploy`. Izvietošana no `fly.toml` atjauno `auto_start_machines = true` un `min_machines_running = 2`. Pārbaudīt ar `fly machines list`. Ja kāda mašīna paliek `stopped`, palaist `fly machine start <id>`.
 3. Cloudflare: dzēst vai atspējot Redirect Rule "Iekonservēts: uz saeima.lv".
 4. Pārbaudīt: `curl -I https://pielaikopartiju.lv/healthz` → 200.
+
+**Nosaukumi, ko viegli sajaukt:**
+- Domēns ir `pielaikopartiju.lv` **bez defises**. Fly lietotne, repo mape un `pielaiko-partiju.fly.dev` ir ar defisi.
+- `pielaiko-partiju.lv` (ar defisi) nav reģistrēts (NIC.lv 2026-11-09: `Status: free`), tāpēc pārlūks rāda `DNS_PROBE_FINISHED_NXDOMAIN`. Tā nav kļūme. Ja vajag aizsargāt drukas kļūdu, šo domēnu var reģistrēt un pārvirzīt.
+
+**Pārbaudīts 2026-11-09:** `curl -I https://pielaikopartiju.lv` → `302`, `location: https://www.saeima.lv/` (gan HTTP, gan HTTPS).
