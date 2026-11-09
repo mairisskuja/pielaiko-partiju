@@ -177,3 +177,42 @@ Tukšo šūnu ir 110 no 336. Tas nav robs, bet vērtība: programma par šo jaut
 | Jautājumu pāri ar |r| > 0,9 | Q3/Q4 = 0,99 | Ukraina/Neitralitāte = −1,00 (apzināts apgrieztais pāris); Ukraina/Skola 2030 −0,90; Ukraina/Valsts pārvalde 0,95 (reāla bloka struktūra: SV, S!, GS) |
 
 Simulācijas skripts: izvilkt `<script>` no HTML, nogriezt pie `/* ---------- Stāvoklis ---------- */`, `const`→`var`, `eval`; tad nejaušas atbildes un tā pati formula. Vērts saglabāt kā `tests/simulate.js` un `tests/validate.js` (pos.length===24, katrai ≠0 ir why, 8/8/8 pa dimensijām).
+
+
+## 6. Nākotnes ideja: jautājumu paplašināšana (nav ieviests)
+
+Novērtēts 2026-09-06, lēmums: pagaidām neieviest; atgriezties, kad pašreizējā 24 jautājumu versija būs sevi izsmēlusi.
+
+**Secinājums.** Dubultot jautājumus (48) nav vērts: aizpildījumu ierobežo programmu klusēšana, ne jautājumu trūkums; jaunie jautājumi būtu retāk segtās tēmās, anketa augtu līdz ~10 min, un 336 jaunas šūnas ar burtiskiem citātiem ir tikpat liels darbs kā visa matrica. Vērtība ir 6 mērķētos jautājumos tēmās, kur programmas gan runā, gan atšķiras.
+
+**Kandidāti** (aplēse no programmu tekstu skenējuma; "nostāja" = cik sarakstiem no 14 ir tiešs teikums):
+
+| # | Formulējums | Joma | Nostāja | Šķiro |
+|---|---|---|---|---|
+| 1 | ES Zaļā kursa prasības Latvijai jāmīkstina vai jāatliek, ja tās sadārdzina enerģiju un ražošanu. | Ekonomika | 7–8 | jā: SV, MMN, ZZS, AS, LPV par; Progresīvie, LA pret |
+| 2 | Jaunu vēja un saules parku būvniecība jāierobežo, dodot pašvaldībām un iedzīvotājiem tiesības projektus apturēt. | Ekonomika | 6–7 | jā: SV, LPV, JKP par; Progresīvie, LA, NA pret |
+| 3 | Valstij pašai jābūvē un jāuztur pieejamu īres mājokļu fonds, ne tikai jāatbalsta mājokļa iegāde. | Ekonomika | 7–8 | daļēji: SC, Progresīvie, SV, NA, AS, ZZS par |
+| 4 | Latvijai jāizstājas no Stambulas konvencijas, un Satversmē jānostiprina ģimene kā vīrieša un sievietes savienība. | Vērtības | 6–8 | asi: SV, LPV, ASL, GS par; Progresīvie pret; ZZS, NA drīzāk par |
+| 5 | Nepilsoņa statuss jālikvidē, piešķirot pilsonību vienkāršotā kārtībā. | Vērtības | 5 | asi: S!, SV, SC par; NA, ASL pret |
+| 6 | Saeimas deputātu skaits jāsamazina un jāievieš mažoritārā vai jauktā vēlēšanu sistēma. | Vērtības | 4–5 | jā, bet maz: SV, S!, SC par; MMN daļēji |
+| 7 | Latvijai jāattīsta atomenerģija kā stabils elektrības avots. | Ekonomika | 3–4 | vāji: MMN, LPV, ASL par (neiesaka) |
+| 8 | Minimālā alga jāpiesaista vidējai algai un būtiski jāceļ. | Ekonomika | 3–4 | vāji: JV, Progresīvie, ZZS par (neiesaka) |
+
+Pievienot 1.–6.; 1., 2., 4., 5., 6. ir apgriezti (piekrišana = status quo maiņa vai mazāk regulējuma). Izņemamie kandidāti: 3. (budžeta deficīts, 5 nostājas, visas vienā virzienā) un 19. (mājasdarbi/eksāmeni, 6 nostājas, neskaidrs virziens). 18. (mācību valoda) paturēt, jo šķiro asi. Rezultāts: 28 jautājumi (10/8/10), ~6 min, +3 salīdzinājumi katram sarakstam, 84 jaunas šūnas ar burtiskiem citātiem.
+
+Tēmas, ko programmas min, bet kas nešķiro (visi vienā virzienā), tāpēc neder: sports (13/14), kultūra (13), korupcija/KNAB (10), digitalizācija/MI (10), bezmaksas ēdināšana skolās (5), valsts kapitālsabiedrību pārvaldība.
+
+
+## 7. Iekonservēts (no 2026-11-09)
+
+Projekts apturēts līdz nākamajām Saeimas vēlēšanām. Kods, Fly lietotne, attēls, IP adreses un sertifikāti ir saglabāti. Nekas nav dzēsts.
+
+**Pašreizējais stāvoklis:**
+- Cloudflare → Rules → Redirect Rules: "Iekonservēts: uz saeima.lv" (All incoming requests, Static, `https://www.saeima.lv/`, 302). DNS ieraksti nemainīti, proxy ieslēgts.
+- Fly `pielaiko-partiju`: abas mašīnas `stopped`, `autostart=false`, tāpēc `pielaiko-partiju.fly.dev` tās nepamodina. Izmaksas paliek tikai par apturēto mašīnu rootfs (centi mēnesī).
+
+**Atjaunošana:**
+1. Atjaunināt datus: jaunās CVK programmas mapē `programmas/`, nostājas `pp-data.js`, `npm test` (ietver `verify-why.js`).
+2. `fly deploy`. Izvietošana no `fly.toml` atjauno `auto_start_machines = true` un `min_machines_running = 2`. Pārbaudīt ar `fly machines list`. Ja kāda mašīna paliek `stopped`, palaist `fly machine start <id>`.
+3. Cloudflare: dzēst vai atspējot Redirect Rule "Iekonservēts: uz saeima.lv".
+4. Pārbaudīt: `curl -I https://pielaikopartiju.lv/healthz` → 200.
